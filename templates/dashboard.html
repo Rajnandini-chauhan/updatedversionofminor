@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="nav-brand">
+                <h1><i class="fas fa-robot"></i> Object Detection</h1>
+            </div>
+            <div class="nav-controls">
+                <div class="user-info">
+                    <span class="user-name">Welcome, {{ user.name }}</span>
+                    <a href="{{ url_for('logout') }}" class="btn btn-logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Video Feed Section -->
+            <section class="video-section">
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <i class="fas fa-video"></i>
+                        <p>Live Video Feed</p>
+                        <small>Video stream will appear here when started</small>
+                    </div>
+                    <!-- In real implementation, replace with actual video feed -->
+                    <img id="videoFeed" style="display: none;" alt="Live Video Feed">
+                </div>
+
+                <div class="video-controls">
+                    <button id="startBtn" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Start Camera
+                    </button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>
+                        <i class="fas fa-stop"></i> Stop Camera
+                    </button>
+                    <button id="captureBtn" class="btn btn-success">
+                        <i class="fas fa-camera"></i> Capture
+                    </button>
+                    <select id="modelSelect" class="form-select">
+                        <option value="yolo">YOLO Model</option>
+                        <option value="ssd">SSD Model</option>
+                        <option value="rcnn">R-CNN Model</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Detection Results -->
+            <section class="results-section">
+                <div class="results-header">
+                    <h2>Detection Results</h2>
+                    <div class="results-stats">
+                        <span class="stat-item">
+                            <i class="fas fa-object-group"></i>
+                            Objects Detected: <span id="objectCount">0</span>
+                        </span>
+                        <span class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            Processing Time: <span id="processingTime">0ms</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="results-container">
+                    <div class="no-results" id="noResults">
+                        <i class="fas fa-search"></i>
+                        <p>No detections yet. Start the camera to begin.</p>
+                    </div>
+                    <div class="detections-list" id="detectionsList" style="display: none;"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Operation completed successfully!</span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
