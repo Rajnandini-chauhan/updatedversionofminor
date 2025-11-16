@@ -48,36 +48,11 @@
                     <button id="captureBtn" class="btn btn-success">
                         <i class="fas fa-camera"></i> Capture
                     </button>
-                    <select id="modelSelect" class="form-select">
-                        <option value="yolo">YOLO Model</option>
-                        <option value="ssd">SSD Model</option>
-                        <option value="rcnn">R-CNN Model</option>
+                    <select id="Objects" class="form-select">
+                        <option value="yolo">Person</option>
+                        <option value="ssd">Car</option>
+                        <option value="rcnn">Bus</option>
                     </select>
-                </div>
-            </section>
-
-            <!-- Detection Results -->
-            <section class="results-section">
-                <div class="results-header">
-                    <h2>Detection Results</h2>
-                    <div class="results-stats">
-                        <span class="stat-item">
-                            <i class="fas fa-object-group"></i>
-                            Objects Detected: <span id="objectCount">0</span>
-                        </span>
-                        <span class="stat-item">
-                            <i class="fas fa-clock"></i>
-                            Processing Time: <span id="processingTime">0ms</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="results-container">
-                    <div class="no-results" id="noResults">
-                        <i class="fas fa-search"></i>
-                        <p>No detections yet. Start the camera to begin.</p>
-                    </div>
-                    <div class="detections-list" id="detectionsList" style="display: none;"></div>
                 </div>
             </section>
         </main>
